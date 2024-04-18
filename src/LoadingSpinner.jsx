@@ -17,7 +17,7 @@ function LoadingSpinner() {
     return (
         <div className="LoadingSpinner">
             <div
-                className="spinner-border text-light"
+                className="spinner-border text-dark"
                 style={spinnerStyles}
                 role="status">
                 <span className="visually-hidden">Loading...</span>

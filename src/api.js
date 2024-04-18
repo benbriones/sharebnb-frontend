@@ -12,14 +12,35 @@ class SharebnbApi {
 
   static token = null;
 
-  static async request(endpoint, data = {}, method = "GET") {
-    const url = new URL(`${BASE_URL}/${endpoint}`);
+  static async request(endpoint, data = {}, method = "GET", reqType='regular') {
 
+
+    const url = new URL(`${BASE_URL}/${endpoint}`);
+    // const containsFile = Object.values(data).some(value => value instanceof File);
+
+    // const headers = !containsFile ? {
+    //   authorization: `Bearer ${SharebnbApi.token}`,
+    //   'content-type': "application/json",
+    // } : {
+    //   authorization: `Bearer ${SharebnbApi.token}`
+    // };
+
+    // if (!containsFile) {
+    //   headers['content-type'] = "application/json";
+    // }
+    // const headers = {
+    //   authorization: `Bearer ${SharebnbApi.token}`,
+    //   containsFile ? 'content-type' : 'application/json'
+    //   'content-type': containsFile ? '' : 'application/json',
+    // };
     // TODO: add condition for multipart request
-    const headers = {
+    const headers = reqType === "regular" ? {
       authorization: `Bearer ${SharebnbApi.token}`,
-      'content-type': 'application/json',
-    };
+      'content-type': "application/json",
+    } : {
+      authorization: `Bearer ${SharebnbApi.token}`,
+    }
+    ;
 
     url.search = (method === "GET")
       ? new URLSearchParams(data).toString()
@@ -27,7 +48,7 @@ class SharebnbApi {
 
     // set to undefined since the body property cannot exist on a GET method
     const body = (method !== "GET")
-      ? JSON.stringify(data)
+      ? (reqType === "regular" ? JSON.stringify(data) : data)
       : undefined;
 
     const resp = await fetch(url, { method, body, headers });
@@ -53,33 +74,34 @@ class SharebnbApi {
   /** Get list of properties, with optional filter that takes in searchTerm  */
 
   static async getProperties(searchTerm) {
-    console.log("searchTerm***", searchTerm)
+    console.log("searchTerm***", searchTerm);
     const searchTermParam = searchTerm ? { titleLike: searchTerm } : {};
     const res = await this.request("properties", searchTermParam);
-    console.log("inAPI***", res)
+    console.log("inAPI***", res);
     return res.properties;
   }
 
   /** Create new property  */
 
   static async createProperty(data) {
-    for (let [key, value] of data.entries()) {
-          console.log("** mulitForm from API", key, value)
-      }
+    // for (let [key, value] of data.entries()) {
+    //       console.log("** mulitForm from API", key, value)
+    //   }
 
-    const res = await fetch(`${BASE_URL}/properties`,
-    {
-      method: "POST",
-      body: data
-    });
+    // const res = await fetch(`${BASE_URL}/properties`,
+    // {
+    //   method: "POST",
+    //   body: data
+    // });
 
-    const resData = await res.json();
-    console.log("*** DATA FROM CREATE IN API", resData)
+    // const resData = await res.json();
+    // console.log("*** DATA FROM CREATE IN API", resData)
 
-    // const res = await this.request(
-    //   "properties",
-    //   data,
-    //   "POST");
+    const res = await this.request(
+      "properties",
+      data,
+      "POST",
+    "multipart");
     return res.property;
   }
 

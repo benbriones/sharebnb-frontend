@@ -60,6 +60,7 @@ function PropertyForm() {
             navigate("/");
         }
         catch (err) {
+            console.log('*1234', err)
             setErrors([...err]);
         }
     }

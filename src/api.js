@@ -14,6 +14,8 @@ class SharebnbApi {
 
   static async request(endpoint, data = {}, method = "GET") {
     const url = new URL(`${BASE_URL}/${endpoint}`);
+
+    // TODO: add condition for multipart request
     const headers = {
       authorization: `Bearer ${SharebnbApi.token}`,
       'content-type': 'application/json',
@@ -60,11 +62,24 @@ class SharebnbApi {
 
   /** Create new property  */
 
-  static async createProperty({ title, address, description, price, images }) {
-    const res = await this.request(
-      "properties",
-      { title, address, description, price, images },
-      "POST");
+  static async createProperty(data) {
+    for (let [key, value] of data.entries()) {
+          console.log("** mulitForm from API", key, value)
+      }
+
+    const res = await fetch(`${BASE_URL}/properties`,
+    {
+      method: "POST",
+      body: data
+    });
+
+    const resData = await res.json();
+    console.log("*** DATA FROM CREATE IN API", resData)
+
+    // const res = await this.request(
+    //   "properties",
+    //   data,
+    //   "POST");
     return res.property;
   }
 

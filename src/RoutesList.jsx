@@ -2,6 +2,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import userContext from "./userContext";
 import { useContext } from "react";
 import PropertiesList from "./PropertiesList";
+import SignupForm from "./SignupForm";
+import LoginForm from "./LoginForm";
+import PropertyForm from "./PropertyForm";
 
 /**RouteList component that contains all Routes
  *
@@ -20,10 +23,10 @@ function RoutesList({ login, signup, logout }) {
         <div className="RoutesList">
             <Routes>
                 <Route path='/' element={<PropertiesList />} />
-                {/* <Route path='/login' element={<LoginForm login={login} />} />
-                <Route path='/signup' element={<SignupForm signup={signup} />} /> */}
-                {/* <Route path='/add-property' element={<AddPropertyForm updateUser={updateUser} />} />
-                <Route path='/properties/:id' element={<PropertyDetail />} />
+                <Route path='/login' element={<LoginForm login={login} />} />
+                <Route path='/signup' element={<SignupForm signup={signup} />} />
+                <Route path='/add-property' element={<PropertyForm />} />
+                {/* <Route path='/properties/:id' element={<PropertyDetail />} />
                 <Route path='/bookings' element={<Bookings />} /> */}
                 <Route path='*' element={<Navigate to="/" />} />
             </Routes>

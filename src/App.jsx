@@ -4,7 +4,9 @@ import { jwtDecode } from 'jwt-decode';
 import './App.css';
 import LoadingSpinner from './LoadingSpinner';
 import SharebnbApi from './api';
-
+import userContext from './userContext';
+import Nav from './Nav';
+import RoutesList from './RoutesList';
 
 /** Component for ShareBnB App.
  *
@@ -24,7 +26,7 @@ function App() {
   const [currUser, setCurrUser] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  console.log("app %o", { token, currUser, isLoading });
+  console.log("app %o", { token, currUser, isLoaded });
 
   useEffect(function fetchUserOnLoadAndTokenChange() {
     console.log("Inside fetchUserOnLoadAndTokenChange use Effect");
@@ -35,11 +37,11 @@ function App() {
         const decodedPayload = jwtDecode(token);
         const username = decodedPayload.username;
         const user = await SharebnbApi.getUser(username);
-        setCurrentUser(user);
+        setCurrUser(user);
       }
       else {
         localStorage.removeItem('token');
-        setCurrentUser(null);
+        setCurrUser(null);
       }
       setIsLoaded(true);
     }
@@ -70,7 +72,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <userContext.Provider value={{ currUser, setCurrUser }}>
-          <NavBar logout={logout} />
+          <Nav logout={logout} />
           <RoutesList
             login={login}
             signup={signup} />

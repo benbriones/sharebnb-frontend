@@ -1,18 +1,4 @@
 .App {
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: crimson;
-  text-align: center;
-}
-
-.App-logo {
-  height: 20vmin;
-}
-
-.App-link {
-  color: darkgray;
+  /* background-color: rgb(101, 180, 198); */
+  min-height: 100vh;
 }

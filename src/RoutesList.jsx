@@ -28,12 +28,11 @@ function RoutesList({ login, signup, logout }) {
                 <Route path='/signup' element={<SignupForm signup={signup} />} />
                 <Route path='/add-property' element={<PropertyForm />} />
                 <Route path='/properties/:id' element={<PropertyDetail />} />
-                {/* <Route path='/properties/:id' element={<PropertyDetail />} />
-                <Route path='/bookings' element={<Bookings />} /> */}
+                {/* <Route path='/bookings' element={<Bookings />} /> */}
                 <Route path='*' element={<Navigate to="/" />} />
             </Routes>
         </div>
-    )
+    );
 }
 
 export default RoutesList;

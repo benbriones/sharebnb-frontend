@@ -3,6 +3,7 @@ import SharebnbApi from './api';
 import LoadingSpinner from './LoadingSpinner';
 import { useParams } from 'react-router-dom';
 import userContext from './userContext';
+import BookingForm from './BookingForm';
 
 // import SearchForm from './SearchForm';
 
@@ -17,14 +18,14 @@ const benSrc = `https://sharebnb-bucket-bb1016.s3.us-west-1.amazonaws.com`;
 function PropertyDetail() {
     const { id } = useParams();
     const [property, setProperty] = useState(null);
-    const { currUser } = useContext(userContext)
+    const { currUser } = useContext(userContext);
 
     useEffect(function fetchPropertyWhenMounted() {
         async function fetchProperty() {
             const resp = await SharebnbApi.getProperty(id);
-            setProperty(resp)
+            setProperty(resp);
         }
-        fetchProperty()
+        fetchProperty();
     }, [id]);
 
 
@@ -44,11 +45,8 @@ function PropertyDetail() {
                 <h5>Address: {property.address}</h5>
                 <h6>{property.description}</h6>
             </div>
-
-
+            {currUser && <BookingForm propertyId={id} />}
         </div>
-
-
     );
 
 }

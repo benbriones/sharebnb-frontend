@@ -12,35 +12,19 @@ class SharebnbApi {
 
   static token = null;
 
-  static async request(endpoint, data = {}, method = "GET", reqType='regular') {
-
-
+  static async request(endpoint, data = {}, method = "GET", reqType = 'regular') {
     const url = new URL(`${BASE_URL}/${endpoint}`);
     // const containsFile = Object.values(data).some(value => value instanceof File);
-
-    // const headers = !containsFile ? {
-    //   authorization: `Bearer ${SharebnbApi.token}`,
-    //   'content-type': "application/json",
-    // } : {
-    //   authorization: `Bearer ${SharebnbApi.token}`
-    // };
-
     // if (!containsFile) {
     //   headers['content-type'] = "application/json";
     // }
-    // const headers = {
-    //   authorization: `Bearer ${SharebnbApi.token}`,
-    //   containsFile ? 'content-type' : 'application/json'
-    //   'content-type': containsFile ? '' : 'application/json',
-    // };
-    // TODO: add condition for multipart request
     const headers = reqType === "regular" ? {
       authorization: `Bearer ${SharebnbApi.token}`,
       'content-type': "application/json",
     } : {
       authorization: `Bearer ${SharebnbApi.token}`,
     }
-    ;
+      ;
 
     url.search = (method === "GET")
       ? new URLSearchParams(data).toString()
@@ -84,24 +68,11 @@ class SharebnbApi {
   /** Create new property  */
 
   static async createProperty(data) {
-    // for (let [key, value] of data.entries()) {
-    //       console.log("** mulitForm from API", key, value)
-    //   }
-
-    // const res = await fetch(`${BASE_URL}/properties`,
-    // {
-    //   method: "POST",
-    //   body: data
-    // });
-
-    // const resData = await res.json();
-    // console.log("*** DATA FROM CREATE IN API", resData)
-
     const res = await this.request(
       "properties",
       data,
       "POST",
-    "multipart");
+      "multipart");
     return res.property;
   }
 
@@ -127,6 +98,17 @@ class SharebnbApi {
   static async getUser(username) {
     let res = await this.request(`users/${username}`);
     return res.user;
+  }
+
+  /** Create booking */
+
+  static async createBooking({ propertyId, guestUsername, startDate, endDate }) {
+    const res = await this.request(
+      "bookings",
+      { propertyId, guestUsername, startDate, endDate },
+      "POST"
+    );
+    return res.booking;
   }
 
 }

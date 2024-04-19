@@ -5,8 +5,7 @@ import SharebnbApi from "./api";
 
 /** Form for adding a new property
  *
- * Props:
- * - login(): function to call in parent
+ * Props: None
  *
  * State:
  * - formData
@@ -33,34 +32,23 @@ function PropertyForm() {
     /** handles form submission */
     async function handleSubmit(evt) {
         evt.preventDefault();
-        console.log("***INSIDE OF HANDLESUBMIT PROPERTYFORM")
         let multiFormData = new FormData();
 
-        console.log("images", images)
         for (let image of images) {
-            console.log("image from for loop", image)
             multiFormData.append("images", image);
         }
 
         // updates multiFormdata with all keys and values
         // from formData state
-        console.log("formData", formData)
         for (let field in formData) {
             multiFormData.append(field, formData[field]);
         }
 
-        // for (let [key, value] of multiFormData.entries()) {
-        //     console.log("** mulitForm Key & Value", key, value)
-        // }
-
         try {
-            // const { title, address, description, price, images } = multiFormData;
-            // console.log()
             await SharebnbApi.createProperty(multiFormData);
             navigate("/");
         }
         catch (err) {
-            console.log('*1234', err)
             setErrors([...err]);
         }
     }

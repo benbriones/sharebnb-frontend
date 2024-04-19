@@ -46,7 +46,12 @@ function BookingForm({ propertyId }) {
             try {
                 await SharebnbApi.createBooking({ propertyId, guestUsername, startDate, endDate });
                 navigate(`/properties/${propertyId}`);
-                setAlerts({ messages: [`Booked from ${startDate} to ${endDate}.`], type: "success" });
+                const formattedStartDate = startDate.toLocaleDateString();
+                const formattedEndDate = endDate.toLocaleDateString();
+                setAlerts({
+                    messages: [`Booked from ${formattedStartDate} to ${formattedEndDate}!`],
+                    type: "success"
+                });
             }
             catch (err) {
                 setAlerts({ messages: [...err], type: "danger" });
@@ -54,41 +59,42 @@ function BookingForm({ propertyId }) {
         }
     }
 
-    /** handles input change */
-    function handleChange(evt) {
-        const { name, value } = evt.target;
-        setFormData(d => ({
-            ...d,
-            [name]: value,
-        }));
-    }
-
     return (
-        <div className="BookingForm text-center container col-lg-4 mt-4">
-            <h2 className="text-dark mb-2">Make New Booking</h2>
-            <div className="card">
-                <div className="card-body">
-                    <form
-                        className="BookingForm" onSubmit={handleSubmit}>
-                        <Calendar className="startDate"
-                            value={startDate}
-                            onChange={setStartDate}
-                            required />
-                        <Calendar className="endDate"
-                            value={endDate}
-                            onChange={setEndDate}
-                            required />
+        <>
+            <h2 className="text-dark text-center mb-2 mt-4">Book This Property</h2>
+            <div className="BookingForm text-center d-flex justify-content-center">
+
+                <form
+                    className="BookingForm" onSubmit={handleSubmit}>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <label className="form-label">Check-In</label>
+                            <Calendar className="startDate"
+                                value={startDate}
+                                onChange={setStartDate}
+                                required />
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label">Check-Out</label>
+                            <Calendar className="endDate"
+                                value={endDate}
+                                onChange={setEndDate}
+                                required />
+                        </div>
+                    </div>
+                        <div className="">
+
                         {alerts.messages.length > 0 &&
                             <Alert messages={alerts.messages} type={alerts.type} />}
-                        <div className="d-grid">
-                            <button
-                                type='submit'
-                                className='btn btn-primary'>Book</button>
                         </div>
-                    </form>
-                </div>
+                    <button
+                        type='submit'
+                        className='btn btn-primary mt-2'>Book</button>
+
+                </form>
+
             </div>
-        </div>
+        </>
     );
 }
 

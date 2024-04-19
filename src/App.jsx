@@ -5,7 +5,7 @@ import './App.css';
 import LoadingSpinner from './LoadingSpinner';
 import SharebnbApi from './api';
 import userContext from './userContext';
-import Nav from './Nav';
+import NavBar from './Nav';
 import RoutesList from './RoutesList';
 
 /** Component for ShareBnB App.
@@ -72,7 +72,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <userContext.Provider value={{ currUser, setCurrUser }}>
-          <Nav logout={logout} />
+          <NavBar logout={logout} />
           <RoutesList
             login={login}
             signup={signup} />

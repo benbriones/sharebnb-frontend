@@ -21,15 +21,14 @@ function PropertyCard({ property }) {
             <Card className="m-3 d-flex"
                 style={{ width: "30em" }}>
                 <CardBody>
-                    <CardImg src={`${benSrc}/${property.images[0]}`}
+                    <CardImg src={`${benSrc}/${property.images[1]}`}
                         style={{ height: "20em", objectFit: "cover" }}
                         top
                         width="100%" />
                     <div className='mt-1 text-center'>
-                        <CardTitle tag="h5">{property.title}</CardTitle>
-                        <CardText >{property.address}</CardText>
-                        {/* <CardText tag="h6">{property.description}</CardText> */}
-                        <CardText >Price: ${property.price}/night</CardText>
+                        <CardTitle className='text-capitalize' tag="h5">{property.title}</CardTitle>
+                        <CardText className='fst-italic' >{property.address}</CardText>
+                        <CardText className='fw-bold' >Price: ${property.price}/night</CardText>
                     </div>
                 </CardBody>
             </Card>

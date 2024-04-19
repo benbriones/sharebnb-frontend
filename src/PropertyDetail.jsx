@@ -37,15 +37,17 @@ function PropertyDetail() {
 
     return (
 
-        <div className='Property row justify-content-start'>
-            <img src={`${benSrc}/${property.images[0]}`} alt={`Image of ${property.title}`} />
+        <div className='Property row justify-content-center'>
+                <p className='fs-2 text-capitalize text-center mb-0 mt-3'>{property.title}</p>
+            <img src={`${benSrc}/${property.images[1]}`} className='col-4 mt-0 img-thumbnail' alt={`Image of ${property.title}`} />
             <div className='text-center'>
-                <h3>{property.title}</h3>
-                <h5>Price: ${property.price}/night</h5>
-                <h5>Address: {property.address}</h5>
-                <h6>{property.description}</h6>
+                <div className='fs-6'>Price: ${property.price}/night</div>
+                <div className=' fs-6'>Address: {property.address}</div>
+                <div className='fs-6 fst-italic'>{property.description}</div>
             </div>
-            {currUser && <BookingForm propertyId={id} />}
+            <div className='row justify-content-center'>
+                {currUser && <BookingForm propertyId={id} />}
+            </div>
         </div>
     );
 

@@ -5,7 +5,7 @@ import "./LoadingSpinner.css";
  * Props: none
  * State: none
  *
- * {TODO:} -> LoadingSpinner
+ *  App -> LoadingSpinner
  */
 
 function LoadingSpinner() {

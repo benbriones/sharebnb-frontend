@@ -15,7 +15,6 @@ import SharebnbApi from "./api";
  */
 
 function PropertyForm() {
-
     const initialState =
     {
         title: "",
@@ -27,6 +26,9 @@ function PropertyForm() {
     const [formData, setFormData] = useState(initialState);
     const [images, setImages] = useState([]);
     const [errors, setErrors] = useState([]);
+
+    console.log("PropertyForm %o", { formData, images, errors });
+
     const navigate = useNavigate();
 
     /** handles form submission */
@@ -38,8 +40,7 @@ function PropertyForm() {
             multiFormData.append("images", image);
         }
 
-        // updates multiFormdata with all keys and values
-        // from formData state
+        // updates multiFormdata with all keys and values from formData state
         for (let field in formData) {
             multiFormData.append(field, formData[field]);
         }

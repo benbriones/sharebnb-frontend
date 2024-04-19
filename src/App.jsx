@@ -64,6 +64,7 @@ function App() {
   /** logs a user out */
   async function logout() {
     setToken(null);
+    alert("You have been logged out.");
   }
 
   if (!isLoaded) return <LoadingSpinner />;

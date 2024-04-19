@@ -30,11 +30,10 @@ function BookingForm({ propertyId }) {
         messages: [],
         type: "danger"
     });
-    const navigate = useNavigate();
 
-    console.log("***STARTDATE", startDate);
-    console.log("***ENDDATE", endDate);
-    console.log("***ALERTS", alerts);
+    console.log("BookingForm %o", { startDate, endDate, alerts });
+
+    const navigate = useNavigate();
 
     /** handles form submission */
     async function handleSubmit(evt) {
@@ -82,15 +81,14 @@ function BookingForm({ propertyId }) {
                                 required />
                         </div>
                     </div>
-                        <div className="">
+                    <div className="">
 
                         {alerts.messages.length > 0 &&
                             <Alert messages={alerts.messages} type={alerts.type} />}
-                        </div>
+                    </div>
                     <button
                         type='submit'
                         className='btn btn-primary mt-2'>Book</button>
-
                 </form>
 
             </div>

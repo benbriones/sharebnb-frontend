@@ -7,14 +7,18 @@ import {
 } from 'reactstrap';
 import './ImageCarousel.css';
 
-
 const benSrc = `https://sharebnb-bucket-bb1016.s3.us-west-1.amazonaws.com`;
+
 
 /** Carousel Component
  *
+ * Props: images []
  *
- *
+ * State:
+ *  - activeIndex (#)
+ *  - animating (boolean)
  */
+
 function ImageCarousel({ images }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -43,7 +47,7 @@ function ImageCarousel({ images }) {
         onExited={() => setAnimating(false)}
         key={item}
       >
-        <img src={`${benSrc}/${item}`}/>
+        <img src={`${benSrc}/${item}`} />
       </CarouselItem>
     );
   });

@@ -15,7 +15,6 @@ import Alert from "./Alert";
  */
 
 function LoginForm({ login }) {
-
     const initialState =
     {
         username: "",
@@ -24,6 +23,9 @@ function LoginForm({ login }) {
 
     const [formData, setFormData] = useState(initialState);
     const [errors, setErrors] = useState([]);
+
+    console.log("login form %o", { formData, errors });
+
     const navigate = useNavigate();
 
     /** handles form submission */
@@ -80,7 +82,7 @@ function LoginForm({ login }) {
                                 onChange={handleChange} />
                         </div>
                         {errors.length > 0 &&
-                            <Alert messages={errors} type="danger"/>}
+                            <Alert messages={errors} type="danger" />}
                         <div className="d-grid">
                             <button
                                 type='submit'

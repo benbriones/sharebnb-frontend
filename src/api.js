@@ -14,10 +14,7 @@ class SharebnbApi {
 
   static async request(endpoint, data = {}, method = "GET", reqType = 'regular') {
     const url = new URL(`${BASE_URL}/${endpoint}`);
-    // const containsFile = Object.values(data).some(value => value instanceof File);
-    // if (!containsFile) {
-    //   headers['content-type'] = "application/json";
-    // }
+
     const headers = reqType === "regular" ? {
       authorization: `Bearer ${SharebnbApi.token}`,
       'content-type': "application/json",

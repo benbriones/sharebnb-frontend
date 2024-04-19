@@ -53,7 +53,8 @@ function PropertyDetail() {
             </div>
             <div className='row justify-content-center mt-4'>
                 {(currUser && currUser.username !== property.owner) && <BookingForm propertyId={id} />}
-                {!currUser && <h4 className='text-center'><Link to="/login">Login</Link> to book property</h4>}
+                {!currUser && <h4 className='text-center'>
+                    <Link className="text-dark" to="/login">Login</Link> or <Link className="text-dark" to="/signup">Signup</Link> to book property</h4>}
             </div>
         </div>
     );

@@ -14,7 +14,7 @@ import UserBookings from "./UserBookings";
  * State: none
  *
  * App -> RoutesList ->
- *       { LoginForm, SignupForm, AddPropertyForm, PropertiesList, PropertyDetail, Bookings }
+ *       { LoginForm, SignupForm, AddPropertyForm, PropertiesList, PropertyDetail, UserBookings }
 */
 
 

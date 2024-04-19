@@ -6,6 +6,7 @@ import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 import PropertyForm from "./PropertyForm";
 import PropertyDetail from "./PropertyDetail";
+import UserBookings from "./UserBookings";
 
 /**RouteList component that contains all Routes
  *
@@ -27,6 +28,7 @@ function RoutesList({ login, signup }) {
                 <Route path='/' element={<PropertiesList />} />
                 <Route path='/add-property' element={<PropertyForm />} />
                 <Route path='/properties/:id' element={<PropertyDetail />} />
+                <Route path='/bookings' element={<UserBookings />} />
                 <Route path='*' element={<Navigate to="/" />} />
             </Routes>
         );

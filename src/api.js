@@ -108,6 +108,12 @@ class SharebnbApi {
     return res.booking;
   }
 
+  /** get one booking */
+  static async getBooking( bookingId ) {
+    const res = await this.request(`bookings/${bookingId}`);
+    return res;
+  }
+
 }
 
 export default SharebnbApi;

@@ -26,6 +26,9 @@ function NavBar({ logout }) {
           <NavLink className="nav-link" to="/add-property">Add Property</NavLink>
         </NavItem>
         <NavItem className="me-1">
+          <NavLink className="nav-link" to="/bookings">My Bookings</NavLink>
+        </NavItem>
+        <NavItem className="me-1">
           <NavLink className="nav-link"
             to="/"
             onClick={logout}>{`Logout (${currUser.username})`}</NavLink>

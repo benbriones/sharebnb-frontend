@@ -69,6 +69,7 @@ function App() {
 
   if (!isLoaded) return <LoadingSpinner />;
 
+
   return (
     <div className="App">
       <BrowserRouter>

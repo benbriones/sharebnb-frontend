@@ -40,7 +40,7 @@ function BookingForm({ propertyId }) {
     async function handleSubmit(evt) {
         evt.preventDefault();
         setAlerts({ messages: [], type: "danger" });
-        if ((startDate > endDate) || (startDate < Date.now)) {
+        if ((startDate > endDate) || (startDate < Date.now())) {
             setAlerts({ messages: ["Invalid check in or check out date."], type: "danger" });
         } else {
             try {
